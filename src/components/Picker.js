@@ -4,13 +4,14 @@ import React, { PropTypes } from 'react'
 const Picker = ({ value, onChange, options }) => {
   const sx = {
     select: {
+      border: '1px solid #ccc',
+      boxSizing: 'border-box',
       fontFamily: 'inherit',
       fontSize: 'inherit',
-      boxSizing: 'border-box',
-      marginBottom: '1rem',
       height: '2.25rem',
       lineHeight: 1.75,
-      border: '1px solid #ccc',
+      marginBottom: 16,
+      maxWidth: '100%',
     }
   }
 

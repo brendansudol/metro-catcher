@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { selectStation, fetchTrainsIfNeeded, invalidateStation } from '../actions'
+import Header from '../components/Header'
 import Picker from '../components/Picker'
 import Trains from '../components/Trains'
 
@@ -41,12 +42,18 @@ class App extends Component {
 
   render() {
     const {
-      stations, selectedStation, trains,
-      isFetching, lastUpdated,
+      stations,
+      selectedStation,
+      trains,
+      isFetching,
+      lastUpdated,
     } = this.props
     const isEmpty = trains.length === 0
+    const sx = { root: { padding: 32 } }
+
     return (
-      <div style={{ padding: 32 }}>
+      <div style={sx.root}>
+        <Header />
         <Picker
           value={selectedStation}
           onChange={this.handleChange}
@@ -55,19 +62,15 @@ class App extends Component {
         <p>
           {lastUpdated &&
             <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
+              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{' '}
             </span>
           }
           {!isFetching &&
-            <a href="#!"
-               onClick={this.handleRefreshClick}>
-              Refresh
-            </a>
+            <a href="#!" onClick={this.handleRefreshClick}>Refresh</a>
           }
         </p>
         {isEmpty
-          ? (isFetching ? <h2>Loading...</h2> : <h2>No trains at this time</h2>)
+          ? (isFetching ? <h3>Loading...</h3> : <h3>No train information at this time</h3>)
           : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
               <Trains trains={trains} />
             </div>
