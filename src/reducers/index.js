@@ -5,7 +5,7 @@ import {
 } from '../actions'
 
 
-const selectedStation = (state = 'vienna', action) => {
+const selectedStation = (state = 'K08', action) => {
   switch (action.type) {
     case SELECT_STATION:
       return action.station

@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
 
+import stations from './data/stations'
 import reducer from './reducers'
 import App from './containers/App'
 
@@ -18,7 +19,7 @@ const store = createStore(
 
 render(
   <Provider store={store}>
-    <App />
+    <App stations={stations} />
   </Provider>,
   document.getElementById('root')
 )

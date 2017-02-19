@@ -40,13 +40,18 @@ class App extends Component {
   }
 
   render() {
-    const { selectedStation, trains, isFetching, lastUpdated } = this.props
+    const {
+      stations, selectedStation, trains,
+      isFetching, lastUpdated,
+    } = this.props
     const isEmpty = trains.length === 0
     return (
       <div style={{ padding: 32 }}>
-        <Picker value={selectedStation}
-                onChange={this.handleChange}
-                options={[ 'vienna', 'falls church' ]} />
+        <Picker
+          value={selectedStation}
+          onChange={this.handleChange}
+          options={stations}
+        />
         <p>
           {lastUpdated &&
             <span>
