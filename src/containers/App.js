@@ -49,10 +49,9 @@ class App extends Component {
       lastUpdated,
     } = this.props
     const isEmpty = trains.length === 0
-    const sx = { root: { padding: 32 } }
 
     return (
-      <div style={sx.root}>
+      <div className='p3'>
         <Header />
         <Picker
           value={selectedStation}

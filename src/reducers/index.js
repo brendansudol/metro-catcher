@@ -5,7 +5,7 @@ import {
 } from '../actions'
 
 
-const selectedStation = (state = 'K08', action) => {
+const selectedStation = (state = 'C05', action) => {
   switch (action.type) {
     case SELECT_STATION:
       return action.station
@@ -36,7 +36,7 @@ const trains = (state = {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: action.trains,
+        items: action.trains.filter(t => t.DestinationCode && t.Line !== '--'),
         lastUpdated: action.receivedAt
       }
     default:

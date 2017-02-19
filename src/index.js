@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import createLogger from 'redux-logger'
 import thunk from 'redux-thunk'
+import 'basscss/css/basscss.css'
 
 import stations from './data/stations'
 import reducer from './reducers'

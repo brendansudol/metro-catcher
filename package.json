@@ -9,6 +9,7 @@
     "redux-logger": "^2.8.1"
   },
   "dependencies": {
+    "basscss": "^8.0.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
