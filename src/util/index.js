@@ -14,4 +14,4 @@ export const lines = {
   'SV': { name: 'Silver', color: '#a2a4a1' },
 }
 
-export const palette = Object.values(lines).map(l => l.color)
+export const palette = Object.keys(lines).map(k => lines[k].color)
