@@ -51,7 +51,7 @@ class App extends Component {
     const isEmpty = trains.length === 0
 
     return (
-      <div className='p3'>
+      <div className='p3 md-col-8 mx-auto'>
         <Header />
         <Picker
           value={selectedStation}

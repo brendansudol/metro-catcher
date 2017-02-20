@@ -13,3 +13,5 @@ export const lines = {
   'GR': { name: 'Green', color: '#1e9b58' },
   'SV': { name: 'Silver', color: '#a2a4a1' },
 }
+
+export const palette = Object.values(lines).map(l => l.color)

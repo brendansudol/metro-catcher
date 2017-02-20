@@ -1,17 +1,13 @@
 import React from 'react'
 
+import Icon from './Icon'
+
 
 const Header = () => (
-  <h1 className='mb3 h3 caps'>
-    <img
-      className='mr1 align-middle'
-      width='50'
-      height='50'
-      alt='metro'
-      src={`${process.env.PUBLIC_URL}/metro.svg`}
-    />
-    DC Metro Catcher
-  </h1>
+  <div className='mb3'>
+    <Icon />
+    <h1 className='inline-block h3'>DC Metro Catcher</h1>
+  </div>
 )
 
 export default Header
