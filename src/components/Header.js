@@ -1,11 +1,13 @@
 import React from 'react'
 
-import Icon from './Icon'
+import IconMetro from './IconMetro'
+import IconRunning from './IconRunning'
 
 
 const Header = () => (
   <div className='mb3'>
-    <Icon />
+    <IconMetro />
+    <IconRunning />
     <h1 className='inline-block h3'>DC Metro Catcher</h1>
   </div>
 )

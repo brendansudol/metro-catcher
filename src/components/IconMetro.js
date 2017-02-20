@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { palette } from '../util'
 
 
-class Icon extends Component {
+class IconMetro extends Component {
   state = { idx: 0 }
 
   componentDidMount() {
@@ -24,8 +24,8 @@ class Icon extends Component {
     return (
       <svg
         className='mr1 align-middle'
-        width='50'
-        height='50'
+        width='40'
+        height='40'
         viewBox='0 0 45 45'
         xmlns='http://www.w3.org/2000/svg'
       >
@@ -49,4 +49,4 @@ class Icon extends Component {
   }
 }
 
-export default Icon
+export default IconMetro
