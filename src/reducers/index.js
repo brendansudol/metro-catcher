@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux'
-import {
-  SELECT_STATION, INVALIDATE_STATION,
-  REQUEST_TRAINS, RECEIVE_TRAINS
-} from '../actions'
+
+import { SELECT_STATION, REQUEST_TRAINS, RECEIVE_TRAINS } from '../actions'
 
 
 const selectedStation = (state = 'C05', action) => {
@@ -14,28 +12,20 @@ const selectedStation = (state = 'C05', action) => {
   }
 }
 
-const trains = (state = {
+const trainsNearby = (state = {
   isFetching: false,
-  didInvalidate: false,
-  items: []
+  items: [],
 }, action) => {
   switch (action.type) {
-    case INVALIDATE_STATION:
-      return {
-        ...state,
-        didInvalidate: true
-      }
     case REQUEST_TRAINS:
       return {
         ...state,
         isFetching: true,
-        didInvalidate: false
       }
     case RECEIVE_TRAINS:
       return {
         ...state,
         isFetching: false,
-        didInvalidate: false,
         items: action.trains.filter(t => t.DestinationCode && t.Line !== '--'),
         lastUpdated: action.receivedAt
       }
@@ -44,23 +34,9 @@ const trains = (state = {
   }
 }
 
-const trainsByStation = (state = {}, action) => {
-  switch (action.type) {
-    case INVALIDATE_STATION:
-    case RECEIVE_TRAINS:
-    case REQUEST_TRAINS:
-      return {
-        ...state,
-        [action.station]: trains(state[action.station], action)
-      }
-    default:
-      return state
-  }
-}
-
 const rootReducer = combineReducers({
-  trainsByStation,
-  selectedStation
+  selectedStation,
+  trainsNearby,
 })
 
 export default rootReducer

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { selectStation, fetchTrainsIfNeeded, invalidateStation } from '../actions'
+import { selectStation, fetchTrains } from '../actions'
 import Header from '../components/Header'
 import Picker from '../components/Picker'
 import Trains from '../components/Trains'
@@ -18,13 +18,13 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch, selectedStation } = this.props
-    dispatch(fetchTrainsIfNeeded(selectedStation))
+    dispatch(fetchTrains(selectedStation))
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedStation !== this.props.selectedStation) {
       const { dispatch, selectedStation } = nextProps
-      dispatch(fetchTrainsIfNeeded(selectedStation))
+      dispatch(fetchTrains(selectedStation))
     }
   }
 
@@ -34,10 +34,8 @@ class App extends Component {
 
   handleRefreshClick = e => {
     e.preventDefault()
-
     const { dispatch, selectedStation } = this.props
-    dispatch(invalidateStation(selectedStation))
-    dispatch(fetchTrainsIfNeeded(selectedStation))
+    dispatch(fetchTrains(selectedStation))
   }
 
   render() {
@@ -51,14 +49,14 @@ class App extends Component {
     const isEmpty = trains.length === 0
 
     return (
-      <div className='p3 md-col-8 mx-auto'>
+      <div className='p3 mx-auto' style={{ maxWidth: 500 }}>
         <Header />
         <Picker
           value={selectedStation}
           onChange={this.handleChange}
           options={stations}
         />
-        <p>
+        <p className='mb3'>
           {lastUpdated &&
             <span>
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{' '}
@@ -80,15 +78,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const { selectedStation, trainsByStation } = state
-  const {
-    isFetching,
-    lastUpdated,
-    items: trains
-  } = trainsByStation[selectedStation] || {
-    isFetching: true,
-    items: []
-  }
+  const { selectedStation, trainsNearby } = state
+  const { isFetching, lastUpdated, items: trains } = trainsNearby
 
   return {
     selectedStation,

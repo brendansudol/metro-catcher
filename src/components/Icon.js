@@ -29,7 +29,7 @@ class Icon extends Component {
         viewBox='0 0 45 45'
         xmlns='http://www.w3.org/2000/svg'
       >
-        <g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'>
+        <g stroke='none' fill='none'>
           <circle fill='#263238' cx='22.5' cy='22.5' r='22.5'></circle>
           <polygon fill='#546E7A' points='31 31 28 31 30 37 33 37'></polygon>
           <polygon fill='#546E7A' points='15 31 18 31 16 37 13 37'></polygon>
