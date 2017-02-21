@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { selectStation, fetchTrains } from '../actions'
+import { selectStation, fetchTrains, fetchLocationIfPossible } from '../actions'
 import Header from '../components/Header'
 import Picker from '../components/Picker'
 import Trains from '../components/Trains'
@@ -19,6 +19,7 @@ class App extends Component {
   componentDidMount() {
     const { dispatch, selectedStation } = this.props
     dispatch(fetchTrains(selectedStation))
+    dispatch(fetchLocationIfPossible())
   }
 
   componentWillReceiveProps(nextProps) {

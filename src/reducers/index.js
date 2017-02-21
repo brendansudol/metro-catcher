@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux'
 
-import { SELECT_STATION, REQUEST_TRAINS, RECEIVE_TRAINS } from '../actions'
+import {
+  REQUEST_TRAINS, RECEIVE_TRAINS, SELECT_STATION,
+  REQUEST_LOCATION, RECEIVE_LOCATION, FAIL_LOCATION,
+} from '../actions'
 
 
 const isEligible = t => t.DestinationCode && t.Min.length && t.Line !== '--'
@@ -36,9 +39,41 @@ const selectedStation = (state = 'C05', action) => {
   }
 }
 
+const userLocation = (state = {
+  isAvailable: true,
+  isLocating: false,
+  location: null,
+}, action) => {
+  switch (action.type) {
+    case REQUEST_LOCATION:
+      return {
+        ...state,
+        isLocating: true,
+      }
+    case RECEIVE_LOCATION:
+      return {
+        ...state,
+        isLocating: false,
+        location: {
+          lat: action.coords.latitude,
+          lon: action.coords.longitude,
+        }
+      }
+    case FAIL_LOCATION:
+      return {
+        ...state,
+        isLocating: false,
+        isAvailable: false,
+      }
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
   trainsNearby,
   selectedStation,
+  userLocation,
 })
 
 export default rootReducer

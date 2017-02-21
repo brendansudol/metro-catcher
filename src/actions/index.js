@@ -1,17 +1,10 @@
 export const REQUEST_TRAINS = 'REQUEST_TRAINS'
 export const RECEIVE_TRAINS = 'RECEIVE_TRAINS'
 export const SELECT_STATION = 'SELECT_STATION'
-export const INVALIDATE_STATION = 'INVALIDATE_STATION'
+export const REQUEST_LOCATION = 'REQUEST_LOCATION'
+export const RECEIVE_LOCATION = 'RECEIVE_LOCATION'
+export const FAIL_LOCATION = 'FAIL_LOCATION'
 
-export const selectStation = station => ({
-  type: SELECT_STATION,
-  station
-})
-
-export const invalidateStation = station => ({
-  type: INVALIDATE_STATION,
-  station
-})
 
 export const requestTrains = station => ({
   type: REQUEST_TRAINS,
@@ -33,4 +26,40 @@ export const fetchTrains = station => dispatch => {
     .then(response => response.json())
     .then(json => dispatch(receiveTrains(station, json)))
     .catch(error => console.log(error))
+}
+
+export const selectStation = station => ({
+  type: SELECT_STATION,
+  station
+})
+
+export const requestLocation = () => ({
+  type: REQUEST_LOCATION
+})
+
+export const receiveLocation = pos => ({
+  type: RECEIVE_LOCATION,
+  coords: pos.coords
+})
+
+export const failLocation = () => ({
+  type: FAIL_LOCATION,
+})
+
+const fetchLocation = () => dispatch => {
+  dispatch(requestLocation())
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => dispatch(receiveLocation(position)),
+    (error) => dispatch(failLocation()),
+    {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+  )
+}
+
+export const fetchLocationIfPossible = () => (dispatch, getState) => {
+  const { isAvailable } = getState().userLocation
+
+  if (!isAvailable) return
+  if (!navigator.geolocation) return dispatch(failLocation())
+  return dispatch(fetchLocation())
 }
