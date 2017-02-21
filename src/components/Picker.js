@@ -10,13 +10,12 @@ const Picker = ({ value, onChange, options }) => {
       fontSize: 'inherit',
       height: '2.25rem',
       lineHeight: 1.75,
-      marginBottom: 16,
       maxWidth: '100%',
     }
   }
 
   return (
-    <div>
+    <div className='mb3'>
       <select
         onChange={e => onChange(e.target.value)}
         value={value}

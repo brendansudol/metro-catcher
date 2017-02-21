@@ -5,11 +5,11 @@ import IconRunning from './IconRunning'
 
 
 const Header = () => (
-  <div className='mb3'>
+  <header className='py3'>
     <IconMetro />
     <IconRunning />
     <h1 className='inline-block h3'>DC Metro Catcher</h1>
-  </div>
+  </header>
 )
 
 export default Header

@@ -4,7 +4,7 @@ import { formatTime, lines } from '../util'
 
 
 const Trains = ({trains}) => (
-  <div>
+  <div className='mb3'>
     {trains.map((t, i) =>
       <div
         key={i}

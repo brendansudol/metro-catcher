@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { selectStation, fetchTrains, fetchLocationIfPossible } from '../actions'
+import '../css/layout.css'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Picker from '../components/Picker'
 import Trains from '../components/Trains'
@@ -50,29 +52,32 @@ class App extends Component {
     const isEmpty = trains.length === 0
 
     return (
-      <div className='p3 mx-auto' style={{ maxWidth: 500 }}>
+      <div className='px3 mx-auto app' style={{ maxWidth: 500 }}>
         <Header />
-        <Picker
-          value={selectedStation}
-          onChange={this.handleChange}
-          options={stations}
-        />
-        <p className='mb3'>
-          {lastUpdated &&
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{' '}
-            </span>
+        <main>
+          <Picker
+            value={selectedStation}
+            onChange={this.handleChange}
+            options={stations}
+          />
+          {isEmpty
+            ? (isFetching ? <h3>Loading...</h3> : <h3>No train information at this time</h3>)
+            : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+                <Trains trains={trains} />
+              </div>
           }
-          {!isFetching &&
-            <a href="#!" onClick={this.handleRefreshClick}>Refresh</a>
-          }
-        </p>
-        {isEmpty
-          ? (isFetching ? <h3>Loading...</h3> : <h3>No train information at this time</h3>)
-          : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-              <Trains trains={trains} />
-            </div>
-        }
+          <p>
+            {lastUpdated &&
+              <span>
+                Last updated at {new Date(lastUpdated).toLocaleTimeString()}.{' '}
+              </span>
+            }
+            {!isFetching &&
+              <a href="#!" onClick={this.handleRefreshClick}>Refresh</a>
+            }
+          </p>
+        </main>
+        <Footer />
       </div>
     )
   }
