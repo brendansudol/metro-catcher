@@ -1,4 +1,4 @@
-export default [
+export const stations = [
   {
     name: 'Addison Road-Seat Pleasant',
     lat: 38.886713,
@@ -570,3 +570,7 @@ export default [
     code: 'A04'
   }
 ]
+
+export const stationLookup = code => (
+  stations.filter(s => s.code === code)[0]
+)

@@ -5,6 +5,7 @@ import { selectStation, fetchTrains, fetchLocationIfPossible } from '../actions'
 import '../css/layout.css'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import Location from '../components/Location'
 import Picker from '../components/Picker'
 import Trains from '../components/Trains'
 
@@ -43,11 +44,12 @@ class App extends Component {
 
   render() {
     const {
+      isFetching,
+      lastUpdated,
       stations,
       selectedStation,
       trains,
-      isFetching,
-      lastUpdated,
+      userLocation
     } = this.props
     const isEmpty = trains.length === 0
 
@@ -66,6 +68,7 @@ class App extends Component {
                 <Trains trains={trains} />
               </div>
           }
+          <Location station={selectedStation} {...userLocation} />
           <p>
             {lastUpdated &&
               <span>
@@ -84,14 +87,15 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const { selectedStation, trainsNearby } = state
+  const { trainsNearby, selectedStation, userLocation } = state
   const { isFetching, lastUpdated, items: trains } = trainsNearby
 
   return {
+    isFetching,
+    lastUpdated,
     selectedStation,
     trains,
-    isFetching,
-    lastUpdated
+    userLocation
   }
 }
 

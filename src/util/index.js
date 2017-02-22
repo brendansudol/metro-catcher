@@ -15,3 +15,23 @@ export const lines = {
 }
 
 export const palette = Object.keys(lines).map(k => lines[k].color)
+
+export const haversine = (lon1, lat1, lon2, lat2) => {
+  const radians = deg => deg * Math.PI / 180
+
+  const dlon = radians(lon2 - lon1)
+  const dlat = radians(lat2 - lat1)
+
+  const a = Math.pow(Math.sin(dlat / 2), 2) + (
+    Math.cos(radians(lat1)) *
+    Math.cos(radians(lat2)) *
+    Math.pow(Math.sin(dlon / 2), 2)
+  )
+  const c = 2 * Math.asin(Math.sqrt(a))
+
+  const radius_earth_m = 6371000
+  const meters = radius_earth_m * c
+  const miles = meters * 0.621371 / 1000.0
+
+  return miles
+}
