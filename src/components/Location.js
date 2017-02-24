@@ -16,7 +16,7 @@ const Location = ({ isAvailable, isLocating, location, station }) => {
   const distance = haversine(lon1, lat1, lon2, lat2)
   const minsRun = Math.round(distance / MPH_RUN * 60)
   const minsWalk = Math.round(distance / MPH_WALK * 60)
-  const fmt = m => `~${m} minute${m !== 1 ? 's' : ''}`
+  const fmt = m => `${m} minute${m !== 1 ? 's' : ''}`
 
   return (
     <div className='mb3 p2 h5' style={{

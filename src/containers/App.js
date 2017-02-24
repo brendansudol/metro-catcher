@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { selectStation, fetchTrains, fetchLocationIfPossible } from '../actions'
+import { changeStation, fetchTrains, fetchLocationIfPossible } from '../actions'
 import '../css/layout.css'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   handleChange = nextStation => {
-    this.props.dispatch(selectStation(nextStation))
+    this.props.dispatch(changeStation(nextStation))
   }
 
   handleRefreshClick = e => {

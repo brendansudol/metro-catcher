@@ -10,7 +10,7 @@ const Picker = ({ value, onChange, options }) => {
       fontSize: 'inherit',
       height: '2.25rem',
       lineHeight: 1.75,
-      maxWidth: '100%',
+      width: '100%',
     }
   }
 

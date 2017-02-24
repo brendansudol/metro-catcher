@@ -30,7 +30,7 @@ const trainsNearby = (state = {
   }
 }
 
-const selectedStation = (state = 'C05', action) => {
+const selectedStation = (state = '', action) => {
   switch (action.type) {
     case SELECT_STATION:
       return action.station

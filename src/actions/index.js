@@ -33,6 +33,11 @@ export const selectStation = station => ({
   station
 })
 
+export const changeStation = station => dispatch => {
+  dispatch(selectStation(station))
+  window.location.hash = station
+}
+
 export const requestLocation = () => ({
   type: REQUEST_LOCATION
 })
