@@ -1,7 +1,7 @@
 {
   "name": "metro-catcher",
   "version": "0.1.0",
-  "homepage": "https://brendansudol.github.io/metro-catcher",
+  "homepage": "http://metrocatcher.com",
   "private": true,
   "devDependencies": {
     "gh-pages": "^0.12.0",
